@@ -1,4 +1,4 @@
-function App() {
+export function App() {
     const tracks = [
         {
             title: 'Musicfun soundtrack',
@@ -128,5 +128,3 @@ export function Homework004() {
         </div>
     )
 };
-
-export default App;
