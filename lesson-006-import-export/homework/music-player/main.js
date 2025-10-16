@@ -1,7 +1,7 @@
 import songs from "./modules/songs.js";
 import * as player from "./modules/player.js";
 import {showSong, showPlaylist} from "./modules/display.js";
-import "./styles/theme.js"
+import "./styles/theme.js";
 
 console.log("🎶 Добро пожаловать в музыкальный плеер!");
 
