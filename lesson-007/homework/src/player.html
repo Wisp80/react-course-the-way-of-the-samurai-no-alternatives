@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Мой музыкальный плеер</title>
+</head>
+<body>
+<div class="music-player">
+    <h4>1. Классы</h4>
+    <h1 id="title" style="color: blue; background-color: yellow; border: 2px solid red;">
+        Мой музыкальный плеер
+    </h1>
+    <hr />
+
+    <h4>2. maxlength</h4>
+    <input
+            type="search"
+            id="search"
+            placeholder="Поиск музыки"
+            maxlength="50"
+            value="Начните печатать..."
+    />
+    <hr />
+
+    <h4>3. rows, cols, maxLength, readonly</h4>
+    <textarea
+            placeholder="Оставьте комментарий к треку..."
+            rows="3"
+            cols="40"
+            maxlength="200"
+            readonly
+    ></textarea>
+    <hr />
+
+    <h4>4. tabindex</h4>
+    <button tabindex="0">Click</button>
+    <hr />
+
+    <h4>5. colspan, rowspan</h4>
+    <table border="1">
+        <tbody>
+        <tr>
+            <td colspan="2">1</td>
+            <td rowspan="3">2</td>
+        </tr>
+        </tbody>
+    </table>
+    <hr />
+
+    <h4>6. for</h4>
+    <input type="radio" id="repeat-off" name="repeat" />
+    <label for="repeat-off">Без повтора</label>
+    <hr />
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+.player-title {
+    color: blue;
+    background-color: yellow;
+    border: 2px solid red;
+}
+
+.music-player {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-control {
+    width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+}
