@@ -1,42 +1,42 @@
-// const tasks = null
+import {useState} from 'react';
 
 const tasks = [
     {
         id: 1,
-        title: "Купить продукты на неделю",
+        title: 'Купить продукты на неделю',
         isDone: false,
-        addedAt: "1 сентября",
+        addedAt: '1 сентября',
         priority: 2,
     },
     {
         id: 2,
-        title: "Полить цветы",
+        title: 'Полить цветы',
         isDone: true,
-        addedAt: "2 сентября",
+        addedAt: '2 сентября',
         priority: 0,
     },
     {
         id: 3,
-        title: "Сходить на тренировку",
+        title: 'Сходить на тренировку',
         isDone: false,
-        addedAt: "3 сентября",
+        addedAt: '3 сентября',
         priority: 1,
     },
     {
         id: 4,
-        title: "Срочно отправить рабочий отчет",
+        title: 'Срочно отправить рабочий отчет',
         isDone: false,
-        addedAt: "4 сентября",
+        addedAt: '4 сентября',
         priority: 4,
     },
     {
         id: 5,
-        title: "Заплатить за коммунальные услуги",
+        title: 'Заплатить за коммунальные услуги',
         isDone: false,
-        addedAt: "3 сентября",
+        addedAt: '3 сентября',
         priority: 3,
     },
-]
+];
 
 export function App() {
     if (tasks === null)
@@ -45,26 +45,37 @@ export function App() {
     if (tasks.length === 0)
         return <h1>Задачи отсутствуют</h1>;
 
-    // const priority =
+    const [highlightedTaskId, setHighlightedTaskId] = useState(null);
 
     return <div>
+        <button onClick={() => {
+            setHighlightedTaskId(null);
+        }}>Сбросить выделение
+        </button>
+
         {tasks.map((task, index) => {
             return (
                 <div key={index} style={{
-                    border: '8px solid black',
+                    border: task.id === highlightedTaskId ? '8px solid blue' : '8px solid black',
                     marginBottom: '10px',
                     width: '30%',
                     backgroundColor:
                         task.priority === 0 ? '#ffffff' :
-                        task.priority === 1 ? '#ffd7b5' :
-                        task.priority === 2 ? '#ffb38a' :
-                        task.priority === 3 ? '#ff9248' :
-                        task.priority === 4 ? '#ff6700' : 'white'
+                            task.priority === 1 ? '#ffd7b5' :
+                                task.priority === 2 ? '#ffb38a' :
+                                    task.priority === 3 ? '#ff9248' :
+                                        task.priority === 4 ? '#ff6700' : 'white'
                 }}>
+
+
                     <div style={{
                         marginLeft: '10px',
                         fontSize: '20px'
-                    }}>
+                    }}
+
+                         onClick={() => {
+                             setHighlightedTaskId(task.id);
+                         }}>
                         <p style={{
                             textDecoration: task.isDone ? 'line-through' : 'none'
                         }}
@@ -82,5 +93,5 @@ export function App() {
                 </div>
             );
         })}
-    </div>
+</div>
 }
