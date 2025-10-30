@@ -9,6 +9,5 @@ const reactRoot = createRoot(rootEl!);
 reactRoot.render(
     <>
         <App/>
-        {/*<Homework004/>*/}
     </>
 );

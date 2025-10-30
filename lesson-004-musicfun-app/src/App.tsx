@@ -1,21 +1,18 @@
-import {useState} from 'react';
-
-const tracks = [
-    {
-        id: 1,
-        title: 'Musicfun soundtrack',
-        url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3'
-    },
-
-    {
-        id: 2,
-        title: 'Musicfun soundtrack instrumental',
-        url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack-instrumental.mp3'
-    },
-];
+import {useEffect, useState} from 'react';
 
 export function App() {
     const [selectedTrackId, setSelectedTrackId] = useState(1);
+    const [tracks, setTracks] = useState(null)
+
+    useEffect(() => {
+        console.log('effect');
+        fetch('https://musicfun.it-incubator.app/api/1.0/playlists/tracks', {
+            headers: {
+                'api-key': '9eed344f-5a69-4e3b-92dc-6f0f7f443157'
+            }
+        }).then(res => res.json())
+            .then(json => setTracks(json.data))
+    }, [])
 
     if (tracks === null) {
         return <div>
@@ -49,9 +46,9 @@ export function App() {
                                     <div onClick={ () => {
                                         setSelectedTrackId(track.id);
                                     } }>
-                                        {track.title}
+                                        {track.attributes.title}
                                     </div>
-                                    <audio src={track.url} controls></audio>
+                                    <audio src={track.attributes.attachments[0].url} controls></audio>
                                 </li>
                             )
                         }
@@ -60,31 +57,4 @@ export function App() {
             </ul>
         </div>
     );
-};
-
-export function Homework004() {
-    const tasks = [
-        {id: 1, title: "Купить продукты на неделю", isDone: false},
-        {id: 2, title: "Полить цветы", isDone: true},
-        {id: 3, title: "Сходить на тренировку", isDone: false},
-    ]
-
-    return (
-        <div>
-            <h1>Список дел</h1>
-
-            <ul>
-                {
-                    tasks.map((track) => {
-                        return (
-                            <li key={track.id}>
-                                <div>{track.title}</div>
-                                <input type="checkbox"/>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
-        </div>
-    )
 };
