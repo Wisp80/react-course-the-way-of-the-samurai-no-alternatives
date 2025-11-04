@@ -72,19 +72,15 @@ export function App() {
 
                 <div>
                     <h2>Details</h2>
-                    {
-                        selectedTrackId && (!selectedTrack || selectedTrack.id !== selectedTrackId)
-                            ? 'loading...'
-                            : selectedTrack === null
-                                ? 'Track is not selected'
-                                : <div>
-                                    <h3>{selectedTrack.attributes.title}</h3>
-                                    <h4>Lyrics</h4>
-                                    <p>
-                                        {selectedTrack.attributes.lyrics ?? 'no lyrics'}
-                                    </p>
-                                </div>
-                    }
+                    {selectedTrackId && (!selectedTrack || selectedTrack.id !== selectedTrackId) && 'loading...'}
+                    {!selectedTrack && 'Track is not selected'}
+                    {selectedTrack && <div>
+                        <h3>{selectedTrack.attributes.title}</h3>
+                        <h4>Lyrics</h4>
+                        <p>
+                            {selectedTrack.attributes.lyrics ?? 'No lyrics'}
+                        </p>
+                    </div>}
                 </div>
             </div>
         </div>
