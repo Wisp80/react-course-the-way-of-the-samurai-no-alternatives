@@ -1,19 +1,34 @@
 import {useEffect, useState} from 'react';
 
 export function App() {
+    const trellyAPIkey = '34ba8abb-f37c-46d9-9a4f-8f6b36b1b225'
+
     const [tasks, setTasks] = useState(null);
+    const [boardId, setBoardId] = useState(null)
+    const [selectedTaskId, setSelectedTaskId] = useState(null);
+    const [selectedTask, setSelectedTask] = useState(null);
 
     useEffect(() => {
         fetch('https://trelly.it-incubator.app/api/1.0/boards/tasks', {
             headers: {
-                'api-key': '34ba8abb-f37c-46d9-9a4f-8f6b36b1b225'
+                'api-key': trellyAPIkey
             }
         }).then(res => res.json())
             .then(json => setTasks(json.data));
     }, []);
 
-    const [selectedTaskId, setSelectedTaskId] = useState(null);
-    const [selectedTask, setSelectedTask] = useState(null);
+    useEffect(() => {
+        if (!boardId && !selectedTaskId) {
+            return;
+        }
+
+        fetch('https://trelly.it-incubator.app/api/1.0/boards/' + boardId + '/tasks/' + selectedTaskId, {
+            headers: {
+                'api-key': trellyAPIkey
+            }
+        }).then(res => res.json())
+            .then(json => setSelectedTask(json.data));
+    }, [selectedTaskId])
 
     if (tasks === null)
         return <h1>Загрузка...</h1>;
@@ -54,13 +69,7 @@ export function App() {
 
                                  onClick={() => {
                                      setSelectedTaskId(task.id);
-
-                                     fetch('https://trelly.it-incubator.app/api/1.0/boards/' + task.attributes.boardId + '/tasks/' + task.id, {
-                                         headers: {
-                                             'api-key': '34ba8abb-f37c-46d9-9a4f-8f6b36b1b225'
-                                         }
-                                     }).then(res => res.json())
-                                         .then(json => setSelectedTask(json.data));
+                                     setBoardId(task.attributes.boardId);
                                  }}>
                                 <p style={{
                                     textDecoration: task.attributes.status === 2 ? 'line-through' : 'none'
