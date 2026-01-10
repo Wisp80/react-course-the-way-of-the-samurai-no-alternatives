@@ -1,14 +1,13 @@
 import {useEffect, useState} from 'react';
 
-export const TaskDetails = () => {
+export const TaskDetails = ({selectedTaskId, boardId}) => {
     const trellyAPIkey = '34ba8abb-f37c-46d9-9a4f-8f6b36b1b225'
-    const selectedTaskId = ''
-    const boardId = ''
 
     const [selectedTask, setSelectedTask] = useState(null);
 
     useEffect(() => {
         if (!boardId && !selectedTaskId) {
+            setSelectedTask(null);
             return;
         }
 
@@ -18,7 +17,7 @@ export const TaskDetails = () => {
             }
         }).then(res => res.json())
             .then(json => setSelectedTask(json.data));
-    }, [selectedTaskId])
+    }, [boardId, selectedTaskId])
 
     return <div
         style={{
@@ -36,7 +35,7 @@ export const TaskDetails = () => {
                     : selectedTask === null
                         ? 'Task is not selected'
                         : <div>
-                            <p>title - {selectedTask.attributes.title  ?? 'no title'}</p>
+                            <p>title - {selectedTask.attributes.title ?? 'no title'}</p>
                             <p>boardTitle - {selectedTask.attributes.boardTitle ?? 'no boardTitle'}</p>
                             <p>description - {selectedTask.attributes.description ?? 'no description'}</p>
                         </div>

@@ -1,11 +1,6 @@
 import {createRoot} from 'react-dom/client';
 import './index.css';
-
-import {Header} from './components/Header.tsx';
-import {PageTitle} from './components/PageTitle.tsx';
-import {TaskList} from './components/TaskList.tsx';
-import {TaskDetails} from './components/TaskDetails.tsx';
-import {Footer} from './components/Footer.tsx';
+import {MainPage} from "./components/mainPage.tsx";
 
 const rootEl = document.getElementById('root');
 const reactRoot = createRoot(rootEl!);
@@ -16,14 +11,3 @@ reactRoot.render(
     </>
 );
 
-function MainPage() {
-    return <div>
-        <Header />
-        <PageTitle />
-        <div style={{display: 'flex', gap: '30px'}}>
-            <TaskList />
-            <TaskDetails />
-        </div>
-        <Footer />
-    </div>;
-}
