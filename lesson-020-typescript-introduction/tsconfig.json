@@ -1,0 +1,11 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "ES2022",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "strict": true,
+    "jsx": "react"
+  }
+}
