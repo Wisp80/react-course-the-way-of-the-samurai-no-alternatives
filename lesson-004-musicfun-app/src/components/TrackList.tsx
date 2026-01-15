@@ -1,11 +1,15 @@
 import {useEffect, useState} from 'react';
-import {TrackItem} from './TrackItem.tsx';
+import {TrackItem, type TrackListItemOutput} from './TrackItem.tsx';
 
-export function TrackList({selectedTrackId, onTrackSelect}) {
-    const [tracks, setTracks] = useState(null);
+type Props = {
+    selectedTrackId: string | null
+    onTrackSelect: (id: string | null) => void
+}
+
+export function TrackList({selectedTrackId, onTrackSelect}: Props) {
+    const [tracks, setTracks] = useState<Array<TrackListItemOutput> | null>(null);
 
     useEffect(() => {
-        console.log('effect');
         fetch('https://musicfun.it-incubator.app/api/1.0/playlists/tracks', {
             headers: {
                 'api-key': '9eed344f-5a69-4e3b-92dc-6f0f7f443157'
@@ -30,7 +34,7 @@ export function TrackList({selectedTrackId, onTrackSelect}) {
         onTrackSelect?.(null);
     };
 
-    const handleClick = function (trackId) {
+    const handleClick = function (trackId: string) {
         onTrackSelect?.(trackId);
     };
 

@@ -1,4 +1,24 @@
-export function TrackItem({onSelect, track, isSelected}) {
+type TrackAttachment = {
+    url: string
+}
+
+type TrackListItemAttributes = {
+    title: string
+    attachments: Array<TrackAttachment>
+}
+
+export type TrackListItemOutput = {
+    id: string
+    attributes: TrackListItemAttributes
+}
+
+type Props = {
+    isSelected: boolean
+    onSelect: (trackId: string) => void
+    track: TrackListItemOutput
+}
+
+export function TrackItem({onSelect, track, isSelected}: Props) {
     const handleClick = () => onSelect?.(track.id)
 
     return <li key={track.id} style={{
