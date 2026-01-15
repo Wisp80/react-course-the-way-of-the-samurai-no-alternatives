@@ -1,12 +1,17 @@
-import {TaskItem} from "./TaskItem.tsx";
+import {type GlobalTaskListItemJsonApiData, TaskItem} from "./TaskItem.tsx";
 import {useEffect, useState} from 'react';
 
-export const TaskList = ({selectedTaskId, onTaskSelect, boardId}) => {
-    const trellyAPIkey = '34ba8abb-f37c-46d9-9a4f-8f6b36b1b225'
+export const trellyAPIkey = '34ba8abb-f37c-46d9-9a4f-8f6b36b1b225'
 
-    const [tasks, setTasks] = useState(null);
+type Props = {
+    selectedTaskId: string | null
+    onTaskSelect: (taskId: string | null, boardId: string | null) => void
+}
 
-    const handleClick = function (taskId) {
+export const TaskList = ({selectedTaskId, onTaskSelect}: Props) => {
+    const [tasks, setTasks] = useState<Array<GlobalTaskListItemJsonApiData> | null>(null);
+
+    const handleClick = function (taskId: string | null, boardId: string | null) {
         onTaskSelect?.(taskId, boardId);
     };
 
@@ -32,10 +37,10 @@ export const TaskList = ({selectedTaskId, onTaskSelect, boardId}) => {
     return <div>
         <button onClick={handleReset}>reset</button>
         <hr/>
-        {tasks.map((task, index) => {
+        {tasks.map((task) => {
             return (
                 <TaskItem
-                    index={index}
+                    key={task.id}
                     task={task}
                     onSelect={handleClick}
                     isSelected={task.id === selectedTaskId}

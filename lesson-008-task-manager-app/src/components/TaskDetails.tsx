@@ -1,9 +1,24 @@
 import {useEffect, useState} from 'react';
+import {trellyAPIkey} from "./TaskList.tsx";
 
-export const TaskDetails = ({selectedTaskId, boardId}) => {
-    const trellyAPIkey = '34ba8abb-f37c-46d9-9a4f-8f6b36b1b225'
+type Props = {
+    selectedTaskId: string | null
+    boardId: string | null
+}
 
-    const [selectedTask, setSelectedTask] = useState(null);
+type TaskDetailsDto = {
+    title: string
+    boardTitle: string
+    description: string
+}
+
+type TaskDetailsData = {
+    id: string
+    attributes: TaskDetailsDto
+}
+
+export const TaskDetails = ({selectedTaskId, boardId}: Props) => {
+    const [selectedTask, setSelectedTask] = useState<TaskDetailsData | null>(null);
 
     useEffect(() => {
         if (!boardId && !selectedTaskId) {

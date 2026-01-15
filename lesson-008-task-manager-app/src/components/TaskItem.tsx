@@ -1,8 +1,27 @@
-export function TaskItem({index, task, onSelect, isSelected}) {
+type GlobalTaskListItemDto = {
+    boardId: string
+    priority: number
+    title: string
+    status: number
+    addedAt: string
+}
+
+export type GlobalTaskListItemJsonApiData = {
+    id: string
+    attributes: GlobalTaskListItemDto
+}
+
+type Props = {
+    task: GlobalTaskListItemJsonApiData
+    onSelect: (taskId: string | null, boardId: string | null) => void
+    isSelected: boolean
+}
+
+export function TaskItem({task, onSelect, isSelected}: Props) {
     const handleClick = () => onSelect?.(task.id, task.attributes.boardId)
 
     return (
-        <div key={index} style={{
+        <div style={{
             border: isSelected ? '8px solid blue' : '8px solid black',
             marginBottom: '10px',
             width: '100%',

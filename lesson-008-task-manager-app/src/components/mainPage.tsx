@@ -3,10 +3,10 @@ import {TaskDetails} from "./TaskDetails.tsx";
 import {useState} from "react";
 
 export function MainPage() {
-    const [selectedTaskId, setSelectedTaskId] = useState(null)
-    const [boardId, setBoardId] = useState()
+    const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null)
+    const [boardId, setBoardId] = useState<string | null>(null)
 
-    const handleTaskSelect = (taskId, boardId) => {
+    const handleTaskSelect = (taskId: string | null, boardId: string | null): void => {
         setSelectedTaskId(taskId);
         setBoardId(boardId);
     };
@@ -15,8 +15,7 @@ export function MainPage() {
         <div style={{display: 'flex', gap: '30px'}}>
             <TaskList
                 selectedTaskId={selectedTaskId}
-                onTaskSelect={handleTaskSelect}
-                boardId={boardId}/>
+                onTaskSelect={handleTaskSelect}/>
             <TaskDetails
                 selectedTaskId={selectedTaskId}
                 boardId={boardId}/>
