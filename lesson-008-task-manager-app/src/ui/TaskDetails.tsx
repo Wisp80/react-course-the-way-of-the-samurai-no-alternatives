@@ -1,20 +1,9 @@
 import {useEffect, useState} from 'react';
-import {trellyAPIkey} from "./TaskList.tsx";
+import {getTask, type TaskDetailsData} from "../dal/api.ts";
 
 type Props = {
     selectedTaskId: string | null
     boardId: string | null
-}
-
-type TaskDetailsDto = {
-    title: string
-    boardTitle: string
-    description: string
-}
-
-type TaskDetailsData = {
-    id: string
-    attributes: TaskDetailsDto
 }
 
 export const TaskDetails = ({selectedTaskId, boardId}: Props) => {
@@ -25,13 +14,7 @@ export const TaskDetails = ({selectedTaskId, boardId}: Props) => {
             setSelectedTask(null);
             return;
         }
-
-        fetch('https://trelly.it-incubator.app/api/1.0/boards/' + boardId + '/tasks/' + selectedTaskId, {
-            headers: {
-                'api-key': trellyAPIkey
-            }
-        }).then(res => res.json())
-            .then(json => setSelectedTask(json.data));
+        getTask(boardId, selectedTaskId).then(json => setSelectedTask(json.data));
     }, [boardId, selectedTaskId])
 
     return <div

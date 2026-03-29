@@ -1,12 +1,5 @@
 import {useEffect, useState} from 'react';
-
-type TrackDetailsResourceData = {
-    id: string
-    attributes: {
-        title: string
-        lyrics: string | null
-    }
-}
+import {getTrack, type TrackDetailsResourceData} from "../dal/api.ts";
 
 type Props = {
     trackId: string | null
@@ -21,12 +14,7 @@ export function TrackDetail({trackId}: Props) {
             return;
         }
 
-        fetch('https://musicfun.it-incubator.app/api/1.0/playlists/tracks/' + trackId, {
-            headers: {
-                'api-key': '9eed344f-5a69-4e3b-92dc-6f0f7f443157'
-            }
-        }).then(res => res.json())
-            .then(json => setSelectedTrack(json.data));
+        getTrack(trackId).then(json => setSelectedTrack(json.data));
     }, [trackId]);
 
     return <div>

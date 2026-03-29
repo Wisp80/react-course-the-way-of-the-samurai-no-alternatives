@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
-import {TrackItem, type TrackListItemOutput} from './TrackItem.tsx';
+import {TrackItem} from './TrackItem.tsx';
+import {getTracks, type TrackListItemOutput} from '../dal/api.ts';
 
 type Props = {
     selectedTrackId: string | null
@@ -10,12 +11,7 @@ export function TrackList({selectedTrackId, onTrackSelect}: Props) {
     const [tracks, setTracks] = useState<Array<TrackListItemOutput> | null>(null);
 
     useEffect(() => {
-        fetch('https://musicfun.it-incubator.app/api/1.0/playlists/tracks', {
-            headers: {
-                'api-key': '9eed344f-5a69-4e3b-92dc-6f0f7f443157'
-            }
-        }).then(res => res.json())
-            .then(json => setTracks(json.data));
+        getTracks().then(json => setTracks(json.data));
     }, []);
 
     if (tracks === null) {
