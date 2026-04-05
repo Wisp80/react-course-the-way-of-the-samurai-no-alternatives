@@ -1,4 +1,4 @@
-import type {TrackListItemOutput} from "../dal/api.ts";
+import type {TrackListItemOutput} from "../dal/api.tsx";
 
 type Props = {
     isSelected: boolean

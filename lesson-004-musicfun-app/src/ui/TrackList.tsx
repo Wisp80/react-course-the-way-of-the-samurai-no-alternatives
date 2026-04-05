@@ -1,6 +1,5 @@
-import {useEffect, useState} from 'react';
 import {TrackItem} from './TrackItem.tsx';
-import {getTracks, type TrackListItemOutput} from '../dal/api.ts';
+import {useTracks} from "../bll/useTracks.tsx";
 
 type Props = {
     selectedTrackId: string | null
@@ -8,11 +7,7 @@ type Props = {
 }
 
 export function TrackList({selectedTrackId, onTrackSelect}: Props) {
-    const [tracks, setTracks] = useState<Array<TrackListItemOutput> | null>(null);
-
-    useEffect(() => {
-        getTracks().then(json => setTracks(json.data));
-    }, []);
+    const {tracks} = useTracks()
 
     if (tracks === null) {
         return <div>

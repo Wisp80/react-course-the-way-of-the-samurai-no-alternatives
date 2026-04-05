@@ -1,9 +1,9 @@
 import {TrackList} from './ui/TrackList.tsx';
 import {TrackDetail} from './ui/TrackDetail.tsx';
-import {useState} from 'react';
+import {useTrackSelection} from "./bll/useTrackSelection.tsx";
 
 export function MainPage() {
-    const [trackId, setTrackId] = useState<string | null>(null);
+    const {trackId, setTrackId} = useTrackSelection();
 
     const handleTrackSelect = (id: string | null): void => {
         setTrackId(id);
