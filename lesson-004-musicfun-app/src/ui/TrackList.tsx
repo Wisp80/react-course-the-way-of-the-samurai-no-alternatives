@@ -1,5 +1,6 @@
 import {TrackItem} from './TrackItem.tsx';
 import {useTracks} from "../bll/useTracks.tsx";
+import styles from './TrackList.module.css'
 
 type Props = {
     selectedTrackId: string | null
@@ -32,7 +33,7 @@ export function TrackList({selectedTrackId, onTrackSelect}: Props) {
     return <div>
         <button onClick={handleReset}>Reset</button>
         <hr/>
-        <ul>
+        <ul className={styles.tracks}>
             {
                 tracks.map(
                     (track) => {

@@ -1,4 +1,6 @@
 import type {TrackListItemOutput} from "../dal/api.tsx";
+import styles from "./TrackList.module.css"
+import clsx from "clsx";
 
 type Props = {
     isSelected: boolean
@@ -9,9 +11,12 @@ type Props = {
 export function TrackItem({onSelect, track, isSelected}: Props) {
     const handleClick = () => onSelect?.(track.id)
 
-    return <li key={track.id} style={{
-        border: isSelected ? '1px solid darkorange' : 'none'
-    }}>
+    const className = clsx({
+        [styles.track]: true,
+        [styles.selected]: isSelected
+    })
+
+    return <li className={className} key={track.id}>
         <div onClick={handleClick}>
             {track.attributes.title}
         </div>

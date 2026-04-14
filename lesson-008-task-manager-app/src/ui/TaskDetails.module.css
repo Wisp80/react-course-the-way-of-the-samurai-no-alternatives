@@ -1,0 +1,9 @@
+.taskDetails {
+    border: 8px solid black;
+    height: 497px;
+    width: 20%
+}
+
+.taskDetail {
+    margin-left: 15px
+}

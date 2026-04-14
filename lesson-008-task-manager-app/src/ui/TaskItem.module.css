@@ -1,0 +1,35 @@
+.taskItem {
+    margin-bottom: 10px;
+    width: 400px;
+    border: 8px solid black;
+    background-color: white;
+}
+
+.selectedItem {
+    border: 8px solid blue
+}
+
+.priority0 {
+    background-color: #ffffff
+}
+
+.priority1 {
+    background-color: #ffd7b5
+}
+
+.priority2 {
+    background-color: #ffb38a
+}
+
+.priority3 {
+    background-color: #ff9248
+}
+
+.priority4 {
+    background-color: #ff6700
+}
+
+.title {
+    margin-left: 10px;
+    font-size: 20px
+}

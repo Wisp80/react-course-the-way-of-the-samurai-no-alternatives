@@ -1,4 +1,5 @@
 import {useTaskDetails} from "../bll/useTaskDetails.ts";
+import styles from "./TaskDetails.module.css"
 
 type Props = {
     selectedTaskId: string | null
@@ -8,15 +9,8 @@ type Props = {
 export const TaskDetails = ({selectedTaskId, boardId}: Props) => {
     const {taskDetails} = useTaskDetails(selectedTaskId, boardId);
 
-    return <div
-        style={{
-            border: '8px solid black',
-            height: '497px',
-            width: '20%'
-        }}>
-        <div style={{
-            marginLeft: '15px',
-        }}>
+    return <div className={styles.taskDetails}>
+        <div className={styles.taskDetail}>
             <h2>Task details</h2>
             <div>{
                 selectedTaskId && (!taskDetails || taskDetails.id !== selectedTaskId)
